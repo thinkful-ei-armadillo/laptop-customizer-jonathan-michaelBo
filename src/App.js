@@ -37,6 +37,7 @@ class App extends Component {
   }
 
   render() {
+    
     // summary of price and features
     const summary = Object.keys(this.state.selected)
           .map(key => <div className="summary__option" key={key}>
@@ -80,6 +81,16 @@ class App extends Component {
               </ul>
             </div>
           });      
+const keys = Object.keys(this.props.features)
+const options = keys.map(key => this.props.features[key])
+
+
+/* const option = options.map((key, i) => {
+  return key[i]
+})
+ */
+
+console.log(options)
 
     return (
       <div className="App">
@@ -87,7 +98,18 @@ class App extends Component {
         <main>
           <section className="main__form">
             <h3>TECH SPECS AND CUSTOMIZATIONS</h3>
-           <Features features={this.props} /> 
+            {keys.map((key, i) => (
+              <Features 
+              key={i} 
+              feature={key}
+              /* options={options[i]} */
+              name={this.props.features[key].map(key => key.name)}
+              cost={this.props.features[key].map(key => key.cost)}
+              />
+            )
+              
+            )}
+           {/* <Features features={this.props.features}  />  */}
           </section>
           <section className="main__summary">
             <h3>NEW GREENLEAF 2018</h3>
