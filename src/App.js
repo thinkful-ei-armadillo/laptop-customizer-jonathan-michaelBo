@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Header from './components/Header';
+import Features from './components/Features';
 import './App.css';
 
 class App extends Component {
@@ -35,6 +37,7 @@ class App extends Component {
   }
 
   render() {
+    // summary of price and features
     const summary = Object.keys(this.state.selected)
           .map(key => <div className="summary__option" key={key}>
             <div className="summary__option__label">{key}  </div>
@@ -54,15 +57,20 @@ class App extends Component {
             const options = this.props.features[key].map((item, index) => {
               const selectedClass = item.name === this.state.selected[key].name ? 'feature__selected' : '';
               const featureClass = 'feature__option ' + selectedClass;
-              return <li key={index} className="feature__item">
-                <div className={featureClass}
-                  
-                  onClick={e => this.updateFeature(key, item)}>
-                    { item.name }
-                    ({ new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'})
-                      .format(item.cost) })
+              return (
+                <li key={index} className="feature__item">
+                  <div className={featureClass}
+
+                    onClick={e => this.updateFeature(key, item)}>
+                    {item.name}
+                    ({new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
+                      .format(item.cost)})
                 </div>
-              </li>
+                </li>
+              )
+                
+                
+                
             });
 
             return <div className="feature" key={key}>
@@ -75,15 +83,11 @@ class App extends Component {
 
     return (
       <div className="App">
-        <header>
-          <h1>ELF Computing</h1>
-          <h3>Laptops</h3>
-          <h5>Customize your laptop</h5>  
-        </header>      
+        <Header />      
         <main>
           <section className="main__form">
             <h3>TECH SPECS AND CUSTOMIZATIONS</h3>
-            { features }
+           <Features features={features} /> 
           </section>
           <section className="main__summary">
             <h3>NEW GREENLEAF 2018</h3>
