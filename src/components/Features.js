@@ -4,15 +4,8 @@ class Features extends React.Component {
   
   render() {
     console.log(this.props)
-    
-    /* const optionKeys = this.props.options.map((item, i) => {
-      
-      return item.name
-    }) */
-   /*  console.log(optionKeys) */
-
-   
-    
+    console.log(this.props.name)
+    console.log(this.props.feature)
     return(
       <div className="feature">
         
@@ -20,7 +13,17 @@ class Features extends React.Component {
           {this.props.feature}
         </div>
         <ul className="feature__list">
+          <li onClick={e => this.props.updateFeature(this.props.feature, this.props.name)}>
+            
+            {this.props.name[0]} ({new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
+              .format(this.props.cost[0])})
+        </li>
+          <li onClick={e => this.props.updateFeature(this.props.feature, this.props.name)}>
+            {this.props.name[1]} ({new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
+              .format(this.props.cost[1])})
+        </li>
           
+        
         </ul>
       </div>
     )

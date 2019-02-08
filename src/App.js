@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
 import Features from './components/Features';
+import Summary from './components/Summary';
 import './App.css';
 
 class App extends Component {
@@ -28,7 +29,7 @@ class App extends Component {
     }
   }
 
-  updateFeature(feature, newValue) {
+  updateFeature = (feature, newValue) => {
     const selected = Object.assign({}, this.state.selected);
     selected[feature] = newValue;
     this.setState({
@@ -80,17 +81,8 @@ class App extends Component {
                 { options }
               </ul>
             </div>
-          });      
+         });      
 const keys = Object.keys(this.props.features)
-const options = keys.map(key => this.props.features[key])
-
-
-/* const option = options.map((key, i) => {
-  return key[i]
-})
- */
-
-console.log(options)
 
     return (
       <div className="App">
@@ -105,6 +97,7 @@ console.log(options)
               /* options={options[i]} */
               name={this.props.features[key].map(key => key.name)}
               cost={this.props.features[key].map(key => key.cost)}
+              updateFeature={this.updateFeature}
               />
             )
               
@@ -113,12 +106,19 @@ console.log(options)
           </section>
           <section className="main__summary">
             <h3>NEW GREENLEAF 2018</h3>
-            {summary}
+            {keys.map((key, i) => (
+            <Summary
+              key={i}
+              feature={key}
+              {...this.state.selected[key]}
+              
+            />
+            )
+            )}
             <div className="summary__total">
-              <div className="summary__total__label">Your Price: </div>
+              <div className="summary__total__label">Your Price:{total} </div>
               <div className="summary__total__value">
-              { new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'})
-                  .format(total) }
+              
               </div>
             </div>
           </section>
