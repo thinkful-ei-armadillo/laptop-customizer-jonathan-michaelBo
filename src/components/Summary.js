@@ -1,11 +1,6 @@
 import React from 'react';
 
 class Summary extends React.Component {
-/* { this.state.selected[key].name } */
-/* {
-  new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
-  .format(total)
-} */
 
   render() {
     console.log(this.props)
@@ -18,7 +13,6 @@ class Summary extends React.Component {
       </div>
     )
   }
-
 }
 
 export default Summary;
